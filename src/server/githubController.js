@@ -40,7 +40,7 @@ githubController.accessToken = (req, res, next) => {
     if (err) return res.send(500, err);
     console.log('body', body);
     // set cookie and specify expiration time
-    res.cookie('Gcookie', body.access_token, {maxAge: 360000});
+    res.cookie('Githubcookie', body.access_token, {maxAge: 360000});
     // use access token to access api
     var options = {
       url: 'https://api.github.com/user',

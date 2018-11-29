@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const githubController = require('./githubController');
+const tweetController = require('./tweetController');
 
 const app = express();
 
@@ -35,7 +36,7 @@ app.get('/auth/github', githubController.authenticate, (req, res) => {
 })
 
 app.get('/oauth2/github/callback', githubController.accessToken, (req, res) => {
-  
+  console.log('success');
 });
 
 // app.get('/user', function(req, res) {
@@ -53,6 +54,13 @@ app.get('/oauth2/github/callback', githubController.accessToken, (req, res) => {
 //     res.send(body);
 //   });
 // });
+
+app.get('/:query',
+  tweetController.getTweets,
+  // send the tweets to the elastic
+  (req, res) => {
+    res.send(res.locals);
+})
 
 app.listen(3000, (err) => {
   if (err) console.log(err);
