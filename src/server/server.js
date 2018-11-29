@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const githubController = require('./githubController');
 const tweetController = require('./tweetController');
+const dbController = require('./dbController');
 
 const app = express();
 
@@ -35,9 +36,8 @@ app.get('/auth/github', githubController.authenticate, (req, res) => {
   res.redirect(res.locals.url);
 })
 
-app.get('/oauth2/github/callback', githubController.accessToken, (req, res) => {
-  console.log('success');
-});
+app.get('/oauth2/github/callback',
+ githubController.accessToken, dbController.checkUser, dbController.createUser);
 
 // app.get('/user', function(req, res) {
 //   var token = req.cookies.token;
