@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const githubController = require('./githubController');
-const tweetController = require('./tweetController');
+// const tweetController = require('./tweetController');
 const dbController = require('./dbController');
 
 const app = express();
@@ -54,12 +54,12 @@ app.get('/oauth2/github/callback',
 //   });
 // });
 
-app.get('/:query',
-  tweetController.getTweets,
-  // send the tweets to the elastic
-  (req, res) => {
-    res.send(res.locals);
-})
+// app.get('/:query',
+//   tweetController.getTweets,
+//   // send the tweets to the elastic
+//   (req, res) => {
+//     res.send(res.locals);
+// })
 
 app.listen(3000, (err) => {
   if (err) console.log(err);

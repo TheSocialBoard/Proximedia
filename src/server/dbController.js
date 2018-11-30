@@ -19,8 +19,13 @@ module.exports = {
   },
   createUser: function (req, res, next) {
     const db = pgp(url);
-    console.log('creating');
-    db.any(`INSERT INTO "user" (login, github_id, avatar_url) VALUES ('${res.locals.githubinfo.login}', '${res.locals.githubinfo.id}', '${res.locals.githubinfo.avatar_url}')`)
-    
+    db.any(`INSERT INTO "user" (login, github_id, avatar_url) VALUES ('${res.locals.githubinfo.login}', '${res.locals.githubinfo.id}', '${res.locals.githubinfo.avatar_url}') RETURNING *`)
+    .then((data) => {
+     res.send({ user: data })
+    })
+  },
+  inputLocation: function (req, res, next) {
+    const db = pgp(url);
+    db.any(`UPDATE "user" SET `)
   }
 }

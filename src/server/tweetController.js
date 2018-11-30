@@ -1,6 +1,6 @@
-const Twitter = require('twitter-node-client').Twitter;
-const config = require('../private/twitterConfig');
-const twitter = new Twitter(config);
+// const Twitter = require('twitter-node-client').Twitter;
+// const config = require('../private/twitterConfig');
+// const twitter = new Twitter(config);
 const tweetController = {};
 
 // error handling for faulty fetch

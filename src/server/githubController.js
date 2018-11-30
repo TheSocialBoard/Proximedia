@@ -55,7 +55,6 @@ githubController.accessToken = (req, res, next) => {
     };
     // http get request to access api
     request(options, function(err, resp, body) {
-      console.log('secondbody', body);
       res.locals.githubinfo = body;
       // console.log('made it');
       return next();
