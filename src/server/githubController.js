@@ -17,7 +17,7 @@ githubController.authenticate = (req, res, next) => {
 }
 
 githubController.accessToken = (req, res, next) => {
-  console.log('req.query',req.query);
+  // console.log('req.query',req.query);
   // client id, client secret, and code are required parameters in the post request for access token
   var tokenQuery = {
     client_id: '5495937af1a3594b747b',
@@ -37,8 +37,9 @@ githubController.accessToken = (req, res, next) => {
   };
   // http post request to provide the code to exchange for access token
   request.post(options, function(err, resp, body) {
+    // console.log('making a post request');
     if (err) return res.send(500, err);
-    console.log('body', body);
+    // console.log('body', body);
     // set cookie and specify expiration time
     res.cookie('Githubcookie', body.access_token, {maxAge: 360000});
     // use access token to access api
@@ -54,11 +55,13 @@ githubController.accessToken = (req, res, next) => {
     };
     // http get request to access api
     request(options, function(err, resp, body) {
+      console.log('secondbody', body);
       res.locals.githubinfo = body;
-      next();
+      // console.log('made it');
+      return next();
     });
   });
-  next();
+  // next();
 }
 
 module.exports = githubController;

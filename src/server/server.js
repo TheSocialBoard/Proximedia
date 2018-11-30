@@ -8,10 +8,7 @@ const dbController = require('./dbController');
 const app = express();
 
 // connect to SQL database
-const pgp = require('pg-promise')();
 const url = require('../private/dbURL');
-
-const db = pgp(url);
 
 // use statements
 app.use(bodyParser.json());
@@ -37,7 +34,9 @@ app.get('/auth/github', githubController.authenticate, (req, res) => {
 })
 
 app.get('/oauth2/github/callback',
- githubController.accessToken, dbController.checkUser, dbController.createUser);
+ githubController.accessToken, dbController.checkUser, dbController.createUser, (req, res) => {
+
+ });
 
 // app.get('/user', function(req, res) {
 //   var token = req.cookies.token;

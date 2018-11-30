@@ -5,7 +5,6 @@ class App extends Component {
     super(props);
     this.state = {
     };
-    this.githubAuth = this.githubAuth.bind(this);
   }
 
   componentDidMount() {
